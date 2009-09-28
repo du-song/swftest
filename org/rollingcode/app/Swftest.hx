@@ -62,6 +62,7 @@ class Swftest {
 						var s = f.nativePath;
 						var d = (new format.swf.Reader(air.io.File.read(f))).read();
 						var v = d.header.version;
+						var fps = d.header.fps;
 						var m = false;
 						var t;
 						for (t in d.tags) {
@@ -72,7 +73,8 @@ class Swftest {
 								default:
 							}
 						}
-						trace("swf"+v+"-as"+(m?3:2));
+						trace("application/flash-swf-"+v+(v>8 ? "-as"+(m?3:2) : ""));
+						trace("fps: "+(fps/256));
 					} catch (e:Dynamic) {
 						trace("Error: "+e);
 					}
